@@ -1,0 +1,60 @@
+{
+  "todos": [
+    {
+      "id": "93a2",
+      "content": "Learn React Hooks",
+      "completed": true,
+      "cleared": true,
+      "createdAt": "2025-03-01T00:08:39.388Z",
+      "updatedAt": "2025-03-01T00:08:39.388Z"
+    },
+    {
+      "id": "0001",
+      "content": "Learn React Testing using RTL and Jest",
+      "completed": false,
+      "cleared": false,
+      "createdAt": "2025-03-01T00:11:23.881Z",
+      "updatedAt": "2025-03-01T00:11:23.881Z"
+    },
+    {
+      "id": "7a3e",
+      "content": "Complete a React coding challenge",
+      "completed": true,
+      "cleared": true,
+      "createdAt": "2025-03-01T16:00:38.634Z",
+      "updatedAt": "2025-03-01T16:00:38.634Z"
+    },
+    {
+      "id": "cc2d",
+      "content": "Watch an episode of my favorite podcast 'Iko Nini' ",
+      "completed": false,
+      "cleared": false,
+      "createdAt": "2025-03-01T16:23:47.422Z",
+      "updatedAt": "2025-03-01T16:23:47.422Z"
+    },
+    {
+      "id": "21bf",
+      "content": "Do a 30 minutes home workout",
+      "completed": true,
+      "cleared": true,
+      "createdAt": "2025-03-01T16:26:12.520Z",
+      "updatedAt": "2025-03-01T16:26:12.520Z"
+    },
+    {
+      "id": "c963",
+      "content": "Take a 1 hour walk",
+      "completed": true,
+      "cleared": true,
+      "createdAt": "2025-03-01T16:26:28.602Z",
+      "updatedAt": "2025-03-01T16:26:28.602Z"
+    },
+    {
+      "id": "8732",
+      "content": "Watch News for current affairs update",
+      "completed": false,
+      "cleared": false,
+      "createdAt": "2025-03-01T16:28:36.602Z",
+      "updatedAt": "2025-03-01T16:28:36.602Z"
+    }
+  ]
+}

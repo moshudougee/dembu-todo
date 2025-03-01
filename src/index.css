@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme {
+  --breakpoint-xs: 480px;
+  --breakpoint-3xl: 2000px;
+  --color-foreground: hsl(235, 21%, 11%);
+  --color-background: hsl(0, 0%, 98%);
+  --color-gradient-1: rgb(3,123,243);
+  --color-work-hover: rgba(0, 0, 0, 0.5);
+  --shadow-custom: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 40px rgba(0, 0, 0, 0.1);
+  --shadow-work-item: 0 0 25px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.1);
+  --font-base: "DM Sans", sans-serif;
+  --font-josefin: "Josefin Sans";
+  --color-light-gray: hsl(0, 0%, 98%);
+  --color-gray-blue-100: hsl(236, 33%, 92%);
+  --color-gray-blue-200: hsl(233, 11%, 84%);
+  --color-gray-blue-300: hsl(236, 9%, 61%);
+  --color-gray-blue-400: hsl(235, 19%, 35%);
+  --color-gray-bule-500: hsl(237, 14%, 26%);
+  --color-dark-blue-100: hsl(235, 24%, 19%);
+  --color-dark-blue-200: hsl(235, 21%, 11%);
+  --color-bright-blue: hsl(220, 98%, 61%);
+  --color-check-1: hsl(192, 100%, 67%);
+  --color-check-2: hsl(280, 87%, 65%);
+  
+}
+
+@layer base {
+  .dark {
+     --color-foreground: hsl(0, 0%, 98%);
+     --color-background: hsl(235, 21%, 11%);
+  }
+}
+
+@layer base {
+  * {
+    transition: background-color 0.3s ease;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground bg-background font-josefin overflow-hidden;
+  }
+}
+
+@layer components {
+  /*... */
+  .home {
+    @apply flex flex-col justify-center items-center w-full h-screen bg-no-repeat bg-contain;
+    @apply bg-[url(/assets/bg-mobile-light.jpg)] md:bg-[url(/assets/bg-desktop-light.jpg)];
+    @apply dark:bg-[url(/assets/bg-mobile-dark.jpg)] md:dark:bg-[url(/assets/bg-desktop-dark.jpg)];
+
+    & .home-footer {
+      @apply flex justify-center items-center p-3;
+
+      & .footer-title {
+        @apply text-sm text-center;
+      }
+    }
+  }
+
+  .todo-container {
+    @apply flex flex-col justify-start items-start gap-6 w-10/12 md:w-7/12 xl:w-4/12 h-10/12 rounded-lg;
+
+    & .header {
+      @apply flex justify-between items-center w-full py-4 bg-transparent;
+
+      & .title {
+        @apply flex items-center;
+
+        & .title-name {
+          @apply text-3xl font-bold text-white tracking-[.3em];
+        }
+      }
+
+      & .toggle-theme {
+        @apply flex items-center p-2;
+      }
+    }
+  }
+
+  .todo-input {
+    @apply flex items-center gap-4 w-full p-4 rounded-md bg-background dark:bg-dark-blue-100 shadow-custom;
+
+    & .circle-input {
+      @apply flex items-center justify-center h-6 w-6 border border-gray-400 rounded-full;
+    }
+
+    & .input-div {
+      @apply flex flex-col items-center justify-center gap-0.5 w-full;
+
+      & .input {
+        @apply flex rounded-md p-2 w-full;
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-200 focus:ring-blue-500;
+      }
+    }
+  }
+
+  .todo-display {
+    @apply flex flex-col bg-background dark:bg-dark-blue-100 rounded-md w-full h-full shadow-custom;
+
+    & .todo-list {
+      @apply flex flex-col overflow-y-scroll custom-scrollbar w-full h-11/12 max-h-[390px] rounded-md;
+
+      & .todo-item {
+        @apply flex items-center gap-4 w-full border-b border-b-gray-400 p-4 cursor-pointer;
+        @apply hover:bg-gray-blue-200 dark:hover:bg-gray-bule-500 transition-transform duration-200 ease-in-out;
+
+        & .circle-display {
+          @apply flex h-6 w-6 border border-gray-400 hover:border-gray-700 rounded-full;
+        }
+
+        & .circle-checked {
+          @apply flex items-center justify-center h-6 w-6 bg-gradient-to-l from-check-1 to-check-2 rounded-full;
+        }
+
+        & .todo-content {
+          @apply flex items-center justify-start w-11/12;
+
+          & .content-cleared {
+            @apply line-through opacity-60;
+          }
+        }
+
+        & .delete-button {
+          @apply flex items-center px-1 text-gray-400 hover:text-gray-600 border rounded-lg shadow-custom cursor-pointer;
+        }
+      }
+
+      & .todo-item.dragging {
+        @apply opacity-50;
+      }
+    }
+
+    & .todo-footer {
+      @apply flex justify-between items-center w-full p-4;
+
+      & .footer-item {
+        @apply flex items-center gap-3;
+
+        & .filter-button {
+          @apply flex items-center gap-2 hover:text-bright-blue cursor-pointer;
+        }
+
+        & .active-button {
+          @apply flex items-center gap-2 text-bright-blue cursor-pointer;
+        }
+
+        & .clear-button {
+          @apply flex items-center gap-2 hover:text-gray-blue-400 cursor-pointer;
+        }
+      }
+    }
+  }
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, hsl(280, 87%, 65%), hsl(192, 100%, 67%));
+  }
+}
