@@ -73,6 +73,7 @@ const ToDoDisplay = ({ todos, loading, error, mutate }: ToDoDisplayProps) => {
             mutate()
             toast.success('Todo deleted!')
         } else {
+            mutate()
             console.error("Error deleting todo")
             toast.error('Error deleting todo. Please try again later.')
         }
