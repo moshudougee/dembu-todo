@@ -55,7 +55,7 @@ This is a **full-stack** Todo application that allows users to create, update, a
    npm install
    ```
 
-### Frontend
+### Environment Variables
 
 1. **Set up a Redis database:**
 
