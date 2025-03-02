@@ -1,5 +1,5 @@
 import jsonServer from "json-server";
-import Redis from "redis";
+import { Redis }from "redis";
 import dotenv from "dotenv";
 dotenv.config();
 
