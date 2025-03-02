@@ -1,10 +1,14 @@
 import jsonServer from 'json-server';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Convert import.meta.url to __dirname equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const server = jsonServer.create();
-const dbPath = path.join(process.cwd(), 'api', 'db.json'); // Use process.cwd() for dynamic path resolution
-console.log('DB Path:', dbPath); // Log the DB path for debugging
+const dbPath = path.join(__dirname, 'db.json'); // Use __dirname for dynamic path resolution
 const router = jsonServer.router(dbPath);
 const middlewares = jsonServer.defaults();
 
@@ -16,13 +20,6 @@ server.use(jsonServer.rewriter({
 server.use(middlewares);
 server.use(router);
 
-server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-  next();
-});
-
 export default function handler(req: VercelRequest, res: VercelResponse) {
-  console.log('Incoming Request:', req.method, req.url); // Log incoming requests
   return server(req, res);
 }
