@@ -11,12 +11,10 @@ const dbPath = path.join(__dirname, "db.json"); // Adjust path if needed
 const router = jsonServer.router(dbPath);
 const middlewares = jsonServer.defaults();
 
-// Middleware for CORS (optional)
-server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
-});
+// ✅ Rewrites API requests correctly
+server.use(jsonServer.rewriter({
+  '/api/*': '/$1'  // Removes `/api/` prefix so `/api/todos` → `/todos`
+}));
 
 server.use(middlewares);
 server.use(router);
