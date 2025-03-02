@@ -20,6 +20,8 @@ server.use(jsonServer.rewriter({
 server.use(middlewares);
 server.use(router);
 
-export const handler = (req: VercelRequest, res: VercelResponse) => {
+const handler = (req: VercelRequest, res: VercelResponse) => {
   return server(req, res);
 };
+
+export default handler;
