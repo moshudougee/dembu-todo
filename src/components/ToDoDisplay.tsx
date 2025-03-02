@@ -5,7 +5,7 @@ import toast from "react-hot-toast"
 import { useEffect, useState } from "react"
 import { ToDo } from "../types"
 
-import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, TouchSensor } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import DndTodoList from "./DndTodoList"
@@ -81,6 +81,12 @@ const ToDoDisplay = ({ todos, loading, error, mutate }: ToDoDisplayProps) => {
 
     const sensors = useSensors(
         useSensor(PointerSensor),
+        useSensor(TouchSensor, {
+            activationConstraint: {
+              delay: 250, // Add a 250ms delay before activating the drag
+              tolerance: 5, // Allow 5px of movement during the delay
+            },
+        }),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
         })
