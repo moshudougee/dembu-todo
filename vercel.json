@@ -1,11 +1,11 @@
 {
     "functions": {
-        "api/server.cjs": {
+        "api/server.mjs": {
         "includeFiles": "api/db.json"
         }
     },
     "rewrites": [
-      { "source": "/api/(.*)", "destination": "/api/server.cjs" }
+      { "source": "/api/(.*)", "destination": "/api/server.mjs" }
     ]
   }
   
